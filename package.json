@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
-    "@types/number-to-words": "^1.2.3"
+    "@types/number-to-words": "^1.2.3",
+    "redux-devtools-extension": "^2.13.9"
   }
 }
