@@ -7,6 +7,7 @@ import resetIconWhite from "../../assets/icons/reset-icon-white.svg";
 import mapDispatchToProps from "./redux-connect/map-dispatch-to-props";
 import mapStateToProps from "./redux-connect/map-state-to-props";
 import useSoundHook from "../hooks/use-sound-hook";
+import playResetSound from "../hooks/use-reset-click";
 
 /* interface */
 interface FCProps {
@@ -26,6 +27,7 @@ function Controls(props: FCProps): JSX.Element {
   function handleOnReset() {
     if (reset) {
       reset();
+      sound && playResetSound();
     }
   }
 

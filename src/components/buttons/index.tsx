@@ -4,28 +4,33 @@ import { connect } from "react-redux";
 
 /* app imports */
 import mapDispatchToProps from "./redux-connect/map-dispatch-to-props";
+import mapStateToProps from "./redux-connect/map-state-to-props";
 import plusIconWhite from "../../assets/icons/plus-icon-ffffff.svg";
 import minusIconWhite from "../../assets/icons/minus-icon-ffffff.svg";
+import playClickSound from "../hooks/use-play-click";
 
 /* interface */
 interface FCProps {
+  sound?: boolean;
   increment?: () => void;
   decrement?: () => void;
 }
 
 /* component */
 function Buttons(props: FCProps): JSX.Element {
-  const { increment, decrement } = props;
+  const { increment, decrement, sound } = props;
 
   function handleOnIncrement() {
     if (increment) {
       increment();
+      sound && playClickSound();
     }
   }
 
   function handleOnDecrement() {
     if (decrement) {
       decrement();
+      sound && playClickSound();
     }
   }
 
@@ -48,4 +53,4 @@ function Buttons(props: FCProps): JSX.Element {
 }
 
 /* exports */
-export default connect(null, mapDispatchToProps)(Buttons);
+export default connect(mapStateToProps, mapDispatchToProps)(Buttons);
