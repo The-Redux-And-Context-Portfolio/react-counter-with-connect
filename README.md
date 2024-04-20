@@ -1,1 +1,1 @@
-![Hey](https://raw.githubusercontent.com/The-Redux-Portfolio/react-counter-with-connect/master/src/assets/images/app-screenshot.png?token=GHSAT0AAAAAACQT346XZWJ2KWN23QPPM6PKZRDRCTQ)
+![image](https://github.com/The-Redux-Portfolio/react-counter-with-connect/assets/19187230/5f069a89-7ae8-4cf0-b140-d6fb4b8db046)
