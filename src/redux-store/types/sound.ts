@@ -1,3 +1,3 @@
 export interface SoundState {
-  isMuted: boolean;
+  sound: boolean;
 }

@@ -1,17 +1,30 @@
 /* node modules */
 import React from "react";
+import { connect } from "react-redux";
+
+/* app imports */
+import useNumberName from "../hooks/use-number-name";
+import mapStateToProps from "./redux-connect/map-state-to-props";
+
+/* interface */
+interface FCProps {
+  counter: number;
+}
 
 /* component */
-function Counter(): JSX.Element {
+function Counter(props: FCProps): JSX.Element {
+  const { counter } = props;
+  const { numberName } = useNumberName(counter);
+
   return (
     <>
       <div className="posContainer text-center">
-        <span className="num">10</span>
-        <span className="name">Ten</span>
+        <span className="num">{ counter }</span>
+        <span className="name">{ numberName }</span>
       </div>
     </>
   );
 }
 
 /* exports */
-export default Counter;
+export default connect(mapStateToProps, {})(Counter);

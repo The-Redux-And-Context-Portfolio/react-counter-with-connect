@@ -1,26 +1,45 @@
 /* node modules */
 import React from "react";
+import { connect } from "react-redux";
 
 /* app imports */
 import resetIconWhite from "../../assets/icons/reset-icon-white.svg";
-import resetIconBlack from "../../assets/icons/reset-icon-black.svg";
-import soundIconWhite from "../../assets/icons/sound-icon-white.svg";
-import soundIconBlack from "../../assets/icons/sound-icon-black.svg";
-import muteIconBlack from "../../assets/icons/mute-icon-black.svg";
-import muteIconWhite from "../../assets/icons/mute-icon-white.svg";
+import mapDispatchToProps from "./redux-connect/map-dispatch-to-props";
+import mapStateToProps from "./redux-connect/map-state-to-props";
+import useSoundHook from "../hooks/use-sound-hook";
+
+/* interface */
+interface FCProps {
+  sound: boolean;
+  reset?: () => void;
+  soundOn?: () => void;
+  soundOff?: () => void;
+}
 
 /* component */
-function Controls(): JSX.Element {
+function Controls(props: FCProps): JSX.Element {
+  const { reset, soundOn, soundOff, sound } = props;
+  const {
+    handleOnSound, soundIcon
+  } = useSoundHook({sound, soundOn, soundOff});
+
+  function handleOnReset() {
+    if (reset) {
+      reset();
+    }
+  }
+
   return (
     <>
       <div className="controls customRow">
-        <button type="button" className="btn btn-default">
-          <img src={soundIconWhite} className="img-fluid center-block"
-          alt="" title=""/>
+        <button type="button" className="btn btn-default"
+          onClick={handleOnSound}>
+          <img {...soundIcon} />
         </button>
-        <button type="button" className="btn btn-default">
+        <button type="button" className="btn btn-default"
+          onClick={handleOnReset}>
           <img src={resetIconWhite} className="img-fluid center-block"
-          alt="" title=""/>
+          alt="Counter - Reset" title="Counter - Reset"/>
         </button>
       </div>
     </>
@@ -28,4 +47,4 @@ function Controls(): JSX.Element {
 }
 
 /* exports */
-export default Controls;
+export default connect(mapStateToProps, mapDispatchToProps)(Controls);
