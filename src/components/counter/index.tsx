@@ -1,13 +1,14 @@
 /* node modules */
 import React from "react";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 
 /* app imports */
 import useNumberName from "../hooks/use-number-name";
 import mapStateToProps from "./redux-connect/map-state-to-props";
 
 /* interface */
-interface FCProps {
+type PropsFromRedux = ConnectedProps<typeof connector>;
+interface FCProps extends PropsFromRedux {
   counter: number;
 }
 
@@ -27,4 +28,6 @@ function Counter(props: FCProps): JSX.Element {
 }
 
 /* exports */
-export default connect(mapStateToProps, {})(Counter);
+const connector = connect(mapStateToProps, {});
+const CounterComponent = connector(Counter);
+export default CounterComponent;

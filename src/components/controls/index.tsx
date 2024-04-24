@@ -1,6 +1,6 @@
 /* node modules */
 import React from "react";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 
 /* app imports */
 import resetIconWhite from "../../assets/icons/reset-icon-white.svg";
@@ -10,11 +10,12 @@ import useSoundHook from "../hooks/use-sound-hook";
 import playResetSound from "../hooks/use-reset-click";
 
 /* interface */
-interface FCProps {
+type PropsFromRedux = ConnectedProps<typeof connector>;
+interface FCProps extends PropsFromRedux {
   sound: boolean;
-  reset?: () => void;
-  soundOn?: () => void;
-  soundOff?: () => void;
+  reset: () => void;
+  soundOn: () => void;
+  soundOff: () => void;
 }
 
 /* component */
@@ -51,4 +52,6 @@ function Controls(props: FCProps): JSX.Element {
 }
 
 /* exports */
-export default connect(mapStateToProps, mapDispatchToProps)(Controls);
+const connector = connect(mapStateToProps, mapDispatchToProps);
+const ControlsComponent = connector(Controls);
+export default ControlsComponent;

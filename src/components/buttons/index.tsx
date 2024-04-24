@@ -1,6 +1,6 @@
 /* node modules */
 import React from "react";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 
 /* app imports */
 import mapDispatchToProps from "./redux-connect/map-dispatch-to-props";
@@ -10,10 +10,11 @@ import minusIconWhite from "../../assets/icons/minus-icon-ffffff.svg";
 import playClickSound from "../hooks/use-play-click";
 
 /* interface */
-interface FCProps {
-  sound?: boolean;
-  increment?: () => void;
-  decrement?: () => void;
+type PropsFromRedux = ConnectedProps<typeof connector>;
+interface FCProps extends PropsFromRedux {
+  sound: boolean;
+  increment: () => void;
+  decrement: () => void;
 }
 
 /* component */
@@ -21,17 +22,13 @@ function Buttons(props: FCProps): JSX.Element {
   const { increment, decrement, sound } = props;
 
   function handleOnIncrement() {
-    if (increment) {
-      increment();
-      sound && playClickSound();
-    }
+    increment();
+    //sound && playClickSound();
   }
 
   function handleOnDecrement() {
-    if (decrement) {
-      decrement();
-      sound && playClickSound();
-    }
+    decrement();
+    //sound && playClickSound();
   }
 
   return (
@@ -55,4 +52,6 @@ function Buttons(props: FCProps): JSX.Element {
 }
 
 /* exports */
-export default connect(mapStateToProps, mapDispatchToProps)(Buttons);
+const connector = connect(mapStateToProps, mapDispatchToProps);
+const ButtonComponent = connector(Buttons);
+export default ButtonComponent;
