@@ -4,7 +4,7 @@ import { AppReduxState } from "../../../redux-store/types";
 /* module */
 function mapStateToProps(state: AppReduxState) {
   const { counter } = state;
-  return counter;
+  return { counter };
 }
 
 /* exports */

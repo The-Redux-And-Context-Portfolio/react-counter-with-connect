@@ -35,10 +35,12 @@ function Controls(props: FCProps): JSX.Element {
     <>
       <div className="controls customRow">
         <button type="button" className="btn btn-default"
+          data-testid="soundBtn"
           onClick={handleOnSound}>
           <img {...soundIcon} />
         </button>
         <button type="button" className="btn btn-default"
+          data-testid="resetBtn"
           onClick={handleOnReset}>
           <img src={resetIconWhite} className="img-fluid center-block"
           alt="Counter - Reset" title="Counter - Reset"/>

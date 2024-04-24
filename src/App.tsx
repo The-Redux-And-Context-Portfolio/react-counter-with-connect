@@ -11,8 +11,8 @@ import Controls from "./components/controls";
 function App(): JSX.Element {
   return (
     <div className="mainContainer positionRelative">
-      <Controls sound={true}/>
-      <Counter counter={0}/>
+      <Controls />
+      <Counter />
       <Buttons />
     </div>
   );

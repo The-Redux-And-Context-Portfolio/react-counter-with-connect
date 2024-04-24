@@ -38,11 +38,13 @@ function Buttons(props: FCProps): JSX.Element {
     <>
       <div className="buttonContainer text-center customRow">
         <button type="button" className="btn btn-default counterBtn white decrement"
+        data-testid="decBtn"
         onClick={handleOnDecrement}>
           <img src={minusIconWhite} className="img-fluid center-block"
           alt="Decrement" title="Decrement"/>
         </button>
         <button type="button" className="btn btn-default counterBtn white increment"
+        data-testid="incBtn"
         onClick={handleOnIncrement}>
           <img src={plusIconWhite} className="img-fluid center-block"
           alt="Increment" title="Increment"/>

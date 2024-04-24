@@ -2,27 +2,21 @@
 import { CounterState } from "../types/counter";
 import { ActionType } from "../types/action";
 
-const initialState: CounterState = {
-  counter: 0
-};
+const initialState = 0;
 
 /* reducer */
 function counterReducer(state = initialState, action: ActionType) {
   switch (action.type) {
     case 'counter/increment': {
-      const updated = {...state};
-      updated.counter += 1;
-      return updated;
+      return ++state;
     }
 
     case 'counter/decrement': {
-      const updated = {...state};
-      updated.counter -= 1;
-      return updated;
+      return --state;
     }
 
     case 'counter/reset': {
-      return { counter: 0 };
+      return 0;
     }
 
     default:
