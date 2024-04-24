@@ -26,10 +26,8 @@ function Controls(props: FCProps): JSX.Element {
   } = useSoundHook({sound, soundOn, soundOff});
 
   function handleOnReset() {
-    if (reset) {
-      reset();
-      sound && playResetSound();
-    }
+    reset();
+    //sound && playResetSound();
   }
 
   return (
