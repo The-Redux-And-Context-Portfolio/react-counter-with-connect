@@ -17,12 +17,39 @@ describe("App Component Test Suite", () => {
     jest.clearAllMocks();
     jest.restoreAllMocks();
   });
+  const mockPreloadedState = {
+    counter: 0,
+    sound: false
+  };
+
+  test("check if sound icon toggles correctly on click", async () => {
+    /* setup */
+    const user = userEvent.setup();
+    renderWithProvider(<App />, {
+      preloadedState: mockPreloadedState
+    });
+
+    /* before the click event - on page load */
+    expect(screen.getByTitle("Sound Off")).toBeInTheDocument();
+
+    /* element + user event */
+    const soundBtn = screen.getByTestId("soundBtn");
+    await user.click(soundBtn);
+
+    /* after the click event */
+    expect(await screen.findByTitle("Sound On")).toBeInTheDocument();
+
+    /* another click event */
+    await user.click(soundBtn);
+    expect(screen.getByTitle("Sound Off")).toBeInTheDocument();
+  });
 
   test("check if reset action.type works correctly on button click", async () => {
     /* setup */
     const user = userEvent.setup();
-    const spyDispatch = jest.spyOn(reduxStore, "dispatch");
-    renderWithProvider(<App />);
+    renderWithProvider(<App />, {
+      preloadedState: mockPreloadedState
+    });
 
     /* element(s) */
     const incBtn = screen.getByTestId("incBtn");
@@ -38,8 +65,9 @@ describe("App Component Test Suite", () => {
   test("check if number display changes on button click", async () => {
     /* setup */
     const user = userEvent.setup();
-    const spyDispatch = jest.spyOn(reduxStore, "dispatch");
-    renderWithProvider(<App />);
+    renderWithProvider(<App />, {
+      preloadedState: mockPreloadedState
+    });
 
     /* element(s) */
     const incBtn = screen.getByTestId("incBtn");
@@ -58,7 +86,9 @@ describe("App Component Test Suite", () => {
 
   test("check if component has children", () => {
     /* setup */
-    const { container } = renderWithProvider(<App />);
+    const { container } = renderWithProvider(<App />, {
+      preloadedState: mockPreloadedState
+    });
     /* assertions */
     expect(container.childElementCount).toBeGreaterThan(0);
   });

@@ -3,5 +3,7 @@ import { CounterState } from "./counter";
 import { SoundState } from "./sound";
 
 /* interface */
-export interface AppReduxState
-  extends CounterState, SoundState {}
+export interface AppReduxState {
+  counter: number;
+  sound: boolean;
+}

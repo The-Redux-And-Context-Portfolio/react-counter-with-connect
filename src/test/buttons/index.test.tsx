@@ -5,7 +5,6 @@ import '@testing-library/jest-dom';
 
 /* app imports */
 import ButtonsComponent from "../../components/buttons/index";
-import reduxStore from "../../redux-store/store";
 import renderWithProvider from "../render-with-provider";
 import {
   counterDecrement, counterIncrement
@@ -19,37 +18,16 @@ describe("ButtonsComponent Test Suite", () => {
     jest.resetAllMocks();
   });
 
-  test("check if 'decrement' action.type is sent on click", async () => {
-    /* setup */
-    const user = userEvent.setup();
-    const spyDispatch = jest.spyOn(reduxStore, "dispatch");
-    renderWithProvider(<ButtonsComponent />);
-
-    /* element + event */
-    const decBtn = screen.getByTestId("decBtn");
-    await user.click(decBtn);
-
-    /* assertions */
-    expect(spyDispatch).toHaveBeenCalledWith(counterDecrement());
-  });
-
-  test("check if 'increment' action.type is sent on click", async () => {
-    /* setup */
-    const user = userEvent.setup();
-    const spyDispatch = jest.spyOn(reduxStore, "dispatch");
-    renderWithProvider(<ButtonsComponent />);
-
-    /* element + event */
-    const incBtn = screen.getByTestId("incBtn");
-    await user.click(incBtn);
-
-    /* assertions */
-    expect(spyDispatch).toHaveBeenCalledWith(counterIncrement());
-  });
+  const mockPreloadedState = {
+    counter: 0,
+    sound: false
+  };
 
   test("check if button icons render properly on load", () => {
     /* setup */
-    renderWithProvider(<ButtonsComponent />);
+    renderWithProvider(<ButtonsComponent />, {
+      preloadedState: mockPreloadedState
+    });
 
     /* element(s) */
     const incIcon = screen.getByTitle("Increment");
@@ -62,7 +40,9 @@ describe("ButtonsComponent Test Suite", () => {
 
   test("check if buttons render properly on load", () => {
     /* setup */
-    renderWithProvider(<ButtonsComponent />);
+    renderWithProvider(<ButtonsComponent />, {
+      preloadedState: mockPreloadedState
+    });
 
     /* element(s) */
     const incBtn = screen.getByTestId("incBtn");

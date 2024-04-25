@@ -23,12 +23,12 @@ function Buttons(props: FCProps): JSX.Element {
 
   function handleOnIncrement() {
     increment();
-    //sound && playClickSound();
+    sound && playClickSound();
   }
 
   function handleOnDecrement() {
     decrement();
-    //sound && playClickSound();
+    sound && playClickSound();
   }
 
   return (

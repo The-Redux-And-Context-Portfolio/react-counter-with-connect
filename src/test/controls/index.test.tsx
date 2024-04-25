@@ -17,56 +17,31 @@ describe("ControlsComponent Test Suite", () => {
     jest.resetAllMocks();
   });
 
-  test("check if 'sound-toggle' action.type is sent on btn click", async () => {
-    /* setup */
-    const user = userEvent.setup();
-    const spyDispatch = jest.spyOn(reduxStore, "dispatch");
-    renderWithProvider(<ControlsComponent />);
-
-    /* element(s) */
-    const soundBtn = screen.getByTestId("soundBtn");
-    await user.click(soundBtn);
-
-    expect(await screen.findByTitle("Sound Off")).toBeInTheDocument();
-    expect(spyDispatch).toHaveBeenCalledWith(soundOff());
-
-    await user.click(soundBtn);
-
-    expect(await screen.findByTitle("Sound On")).toBeInTheDocument();
-    expect(spyDispatch).toHaveBeenCalledWith(soundOn());
-  });
-
-  test("check if 'counter-reset' action.type is sent on btn click", async () => {
-    /* setup */
-    const user = userEvent.setup();
-    const spyDispatch = jest.spyOn(reduxStore, "dispatch");
-    renderWithProvider(<ControlsComponent />);
-
-    /* element + event */
-    const resetBtn = screen.getByTestId("resetBtn");
-    await user.click(resetBtn);
-
-    /* assertions */
-    expect(spyDispatch).toHaveBeenCalledWith(counterReset());
-    expect(spyDispatch).toHaveBeenCalledTimes(1);
-  });
+  const mockPreloadedState = {
+    counter: 0,
+    sound: false
+  };
 
   test("check if button icons are rendered properly on load", () => {
     /* setup */
-    renderWithProvider(<ControlsComponent />);
+    renderWithProvider(<ControlsComponent />, {
+      preloadedState: mockPreloadedState
+    });
 
     /* element(s) */
-    const soundOnIcon = screen.getByTitle("Sound On");
+    const soundOnIcon = screen.getByTitle("Sound Off");
     const resetIcon = screen.getByTitle("Counter - Reset");
 
     /* assertions */
-    expect(soundOnIcon).toHaveAttribute("src", "sound-icon-white.svg");
+    expect(soundOnIcon).toHaveAttribute("src", "mute-icon-white.svg");
     expect(resetIcon).toHaveAttribute("src", "reset-icon-white.svg");
   });
 
   test("check if buttons are rendered properly on load", () => {
     /* setup */
-    renderWithProvider(<ControlsComponent />);
+    renderWithProvider(<ControlsComponent />, {
+      preloadedState: mockPreloadedState
+    });
 
     /* element(s) */
     const soundBtn = screen.getByTestId("soundBtn");

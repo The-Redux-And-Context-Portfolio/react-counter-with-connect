@@ -27,7 +27,7 @@ function Controls(props: FCProps): JSX.Element {
 
   function handleOnReset() {
     reset();
-    //sound && playResetSound();
+    sound && playResetSound();
   }
 
   return (

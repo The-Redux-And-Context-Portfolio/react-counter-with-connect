@@ -16,10 +16,10 @@ interface HookProps {
 function useSoundHook(props: HookProps) {
   const { sound, soundOn, soundOff } = props;
   const [soundIcon, setSoundIcon] = useState<Record<string, any>>({
-    src: soundIconWhite,
+    src: sound ? soundIconWhite : muteIconWhite,
     className: "img-fluid center-block",
-    alt: "Sound On",
-    title: "Sound On"
+    alt: sound ? "Sound On" : "Sound Off",
+    title: sound ? "Sound On" : "Sound Off"
   });
 
   function handleOnSound() {

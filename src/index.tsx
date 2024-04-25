@@ -5,13 +5,13 @@ import { Provider } from "react-redux";
 
 /* app imports */
 import App from './App';
-import reduxStore from "./redux-store/store";
+import createReduxStore from "./redux-store/store";
 
 /* build */
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <Provider store={reduxStore}>
+    <Provider store={createReduxStore()}>
       <App />
     </Provider>
   </React.StrictMode>
