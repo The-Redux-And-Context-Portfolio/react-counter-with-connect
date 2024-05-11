@@ -5,7 +5,10 @@ import { combineReducers } from "redux";
 import counterReducer from "./features/counterSlice";
 import soundReducer from "./features/soundSlice";
 
-/* reducer */
+/**
+ * the reducer has been created using combineReducers from "redux". this is being created without
+ * any abstracted library like redux toolkit
+ **/
 const rootReducer = combineReducers({
   counter: counterReducer,
   sound: soundReducer

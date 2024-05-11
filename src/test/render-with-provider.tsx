@@ -13,11 +13,18 @@ interface ModuleProps {
   preloadedState: AppReduxState;
 }
 
-/* module */
+/**
+ * modules helps create the actual store in the application and can also accept a preloadedState
+ * props when being invoked.
+ * @returns is similar to the render method from rtl
+ */
 function renderWithProvider(ui: React.ReactElement, props: ModuleProps) {
   const { preloadedState } = props;
   const store = createReduxStore(preloadedState);
 
+  /**
+   * the actual store wrapper, which accepts the children element argument
+   */
   function ProviderWrapper({ children }: PropsWithChildren): JSX.Element {
     return (
       <Provider store={store}>

@@ -1,7 +1,10 @@
 /* app imports */
 import { ActionType } from "../types/action";
 
-/* reducer */
+/**
+ * takes care of the toggle state for sounds in the application. this is controlled based on the
+ * input of the action that is being sent into the reducer
+ **/
 function soundReducer(state = true, action: ActionType) {
   switch (action.type) {
     case 'sound/off': {

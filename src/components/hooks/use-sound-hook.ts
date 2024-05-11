@@ -12,7 +12,9 @@ interface HookProps {
   soundOff?: () => void;
 }
 
-/* hook */
+/**
+ * helps provide the required soundIcon and event handler for controlling sounds in the application
+ **/
 function useSoundHook(props: HookProps) {
   const { sound, soundOn, soundOff } = props;
   const [soundIcon, setSoundIcon] = useState<Record<string, any>>({
@@ -22,6 +24,7 @@ function useSoundHook(props: HookProps) {
     title: sound ? "Sound On" : "Sound Off"
   });
 
+  /* event handler */
   function handleOnSound() {
     if (soundOn && soundOff) {
       if (sound) {

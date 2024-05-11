@@ -11,7 +11,10 @@ import {
   counterDecrement, counterIncrement
 } from "../redux-store/actions/counter";
 
-/* t-suite */
+/**
+ * all major functionalities testing is done in this suite. functionalities affect the state of the
+ * redux store and thats how the assertions are done.
+ */
 describe("App Component Test Suite", () => {
   beforeEach(() => {
     jest.clearAllMocks();

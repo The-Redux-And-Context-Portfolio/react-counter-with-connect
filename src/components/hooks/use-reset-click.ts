@@ -1,7 +1,9 @@
 /* app imports */
 import resetSoundFile from "../../assets/sounds/reset-sound.wav";
 
-/* hook */
+/**
+ * provides a prepared sound file that can be played during a user event
+ */
 function playResetSound() {
   const resetSound = new Audio(resetSoundFile);
   return () => {

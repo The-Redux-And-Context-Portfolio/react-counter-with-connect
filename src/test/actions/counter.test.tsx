@@ -5,7 +5,10 @@ import {
   counterIncrement
 } from "../../redux-store/actions/counter";
 
-/* t-suite */
+/**
+ * all redux store action functions are tested. the unit testing was done by treating action
+ * creators as just regular functions
+ */
 describe("Counter Redux Actions Test Suite", () => {
   test("check if counter decrement returns the correct action", () => {
     const expectedAction = { type: "counter/decrement" };

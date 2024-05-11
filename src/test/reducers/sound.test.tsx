@@ -2,7 +2,10 @@
 import soundReducer from "../../redux-store/features/soundSlice";
 import { soundOn, soundOff } from "../../redux-store/actions/sound";
 
-/* t-suite */
+/**
+ * all reducers were tested like they were just regular javascript functions. params were passed
+ * along with a particular action payload
+ */
 describe("Sound Reducer Redux Test Suite", () => {
   test("check if correct state is returned for sound.off", () => {
     const action = soundOff();

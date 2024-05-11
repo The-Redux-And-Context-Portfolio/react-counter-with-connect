@@ -20,11 +20,15 @@ interface FCProps extends PropsFromRedux {
 
 /* component */
 function Controls(props: FCProps): JSX.Element {
+  /* these are from the redux connect api - not from direct props from a parent level */
   const { reset, soundOn, soundOff, sound } = props;
+
+  /* custom hook */
   const {
     handleOnSound, soundIcon
   } = useSoundHook({sound, soundOn, soundOff});
 
+  /* event handler */
   function handleOnReset() {
     reset();
     sound && playResetSound();
@@ -33,11 +37,14 @@ function Controls(props: FCProps): JSX.Element {
   return (
     <>
       <div className="controls customRow">
+        {/* sound button */}
         <button type="button" className="btn btn-default"
           data-testid="soundBtn"
           onClick={handleOnSound}>
           <img {...soundIcon} />
         </button>
+
+        {/* reset button */}
         <button type="button" className="btn btn-default"
           data-testid="resetBtn"
           onClick={handleOnReset}>
@@ -49,7 +56,12 @@ function Controls(props: FCProps): JSX.Element {
   );
 }
 
-/* exports */
+/**
+ * @exports
+ * the reason why its broken down into these smaller pieces is because we need some way to
+ * identify the type of props moving into the buttons component. so take a look at 'PropsFromRedux'
+ * and how 'FCProps' extends from that
+ **/
 const connector = connect(mapStateToProps, mapDispatchToProps);
 const ControlsComponent = connector(Controls);
 export default ControlsComponent;

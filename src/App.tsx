@@ -8,6 +8,7 @@ import Counter from "./components/counter/index";
 import Buttons from "./components/buttons";
 import Controls from "./components/controls";
 
+/* component */
 function App(): JSX.Element {
   return (
     <div className="mainContainer positionRelative">
@@ -18,4 +19,5 @@ function App(): JSX.Element {
   );
 }
 
+/* exports */
 export default App;

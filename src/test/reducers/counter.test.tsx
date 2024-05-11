@@ -2,7 +2,10 @@
 import counterReducer from "../../redux-store/features/counterSlice";
 import { counterReset, counterDecrement, counterIncrement } from "../../redux-store/actions/counter";
 
-/* t-suite */
+/**
+ * all reducers were tested like they were just regular javascript functions. params were passed
+ * along with a particular action payload
+ */
 describe("Counter Reducer Redux Test Suite", () => {
   test("check if state is reset to 'zero' as per action type payload", () => {
     const result = counterReducer(2, counterReset());

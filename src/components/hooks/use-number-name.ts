@@ -2,7 +2,10 @@
 import { useState, useEffect } from "react";
 import numberToWords from "number-to-words";
 
-/* hook */
+/**
+ * gets a number param and then returns the name of the number in words through the number-to-words
+ * package
+ */
 function useNumberName(props: number) {
   const [numberName, setNumberName] = useState<string>("");
 

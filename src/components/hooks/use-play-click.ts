@@ -1,7 +1,9 @@
 /* app imports */
 import clickSoundFile from "../../assets/sounds/click-sound.wav";
 
-/* hook */
+/**
+ * provides a prepared sound file that can be played during a user event
+ */
 function playClickSound() {
   const clickSound = new Audio(clickSoundFile);
   return () => {
